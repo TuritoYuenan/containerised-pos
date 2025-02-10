@@ -2,15 +2,13 @@
 
 import { useState } from "react"
 import {
-	Box,
 	DollarSign,
 	Users,
 	Package,
 	ShoppingCart,
 	Search,
 	Plus,
-	ArrowUpRight,
-	ArrowDownRight,
+	Box,
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -32,12 +30,21 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select"
+import Sidebar from "./components/Sidebar"
+import Brief from "./components/Brief"
 
 const navItems = [
 	{ icon: Box, label: "Inventory" },
 	{ icon: Users, label: "Employees" },
 	{ icon: DollarSign, label: "Sales" },
-]
+];
+
+const briefItems = [
+	{ title: "Total Revenue", icon: DollarSign, value: "$45,231.89", change: "+20.1%" },
+	{ title: "Inventory Value", icon: Package, value: "$12,234.59", change: "-5.2%" },
+	{ title: "Total Orders", icon: ShoppingCart, value: "2,345", change: "+8.1%" },
+	{ title: "Active Staff", icon: Users, value: "12", change: "0%" },
+];
 
 export default function Component() {
 	const [activeTab, setActiveTab] = useState("inventory")
@@ -45,51 +52,11 @@ export default function Component() {
 	return (
 		<div className="flex h-screen bg-gray-100">
 			{/* Sidebar */}
-			<div className="w-64 bg-white shadow-md p-4">
-				<h1 className="text-2xl font-bold mb-6">Management Portal</h1>
-				<nav className="space-y-2">
-					{navItems.map(({ icon: Icon, label }) => (
-						<Button
-							key={label}
-							variant={activeTab === label.toLowerCase() ? "secondary" : "ghost"}
-							className="w-full justify-start"
-							onClick={() => setActiveTab(label.toLowerCase())}
-						>
-							<Icon className="mr-2 h-4 w-4" />
-							{label}
-						</Button>
-					))}
-				</nav>
-			</div>
+			<Sidebar items={navItems} activeTab={activeTab} setActiveTab={setActiveTab} />
 
 			{/* Main Content */}
 			<div className="flex-1 overflow-auto p-8">
-				<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8">
-					{[
-						{ title: "Total Revenue", icon: DollarSign, value: "$45,231.89", change: "+20.1%" },
-						{ title: "Inventory Value", icon: Package, value: "$12,234.59", change: "-5.2%" },
-						{ title: "Total Orders", icon: ShoppingCart, value: "2,345", change: "+8.1%" },
-						{ title: "Active Staff", icon: Users, value: "12", change: "0%" },
-					].map((item, index) => (
-						<Card key={index}>
-							<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-								<CardTitle className="text-sm font-medium">{item.title}</CardTitle>
-								<item.icon className="h-4 w-4 text-muted-foreground" />
-							</CardHeader>
-							<CardContent>
-								<div className="text-2xl font-bold">{item.value}</div>
-								<p className="text-xs text-muted-foreground flex items-center">
-									{item.change.startsWith("+") ? (
-										<ArrowUpRight className="mr-1 h-4 w-4 text-green-500" />
-									) : item.change.startsWith("-") ? (
-										<ArrowDownRight className="mr-1 h-4 w-4 text-red-500" />
-									) : null}
-									{item.change} from last month
-								</p>
-							</CardContent>
-						</Card>
-					))}
-				</div>
+				<Brief items={briefItems} />
 
 				<Tabs value={activeTab} onValueChange={setActiveTab}>
 
