@@ -2,10 +2,10 @@ import { ArrowUpRight, ArrowDownRight } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { BriefCard } from "../lib/types";
 
-export default function ({ items }: { items: BriefCard[] }) {
+export default function (props: { items: BriefCard[] }) {
 	return (
 		<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8">
-			{items.map((item, index) => (
+			{props.items.map((item, index) => (
 				<Card key={index}>
 					<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
 						<CardTitle className="text-sm font-medium">{item.title}</CardTitle>
