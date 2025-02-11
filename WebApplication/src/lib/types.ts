@@ -1,8 +1,3 @@
-export type DropdownOptions = {
-	label: string;
-	value: string;
-};
-
 export type InventoryItem = {
 	name: string,
 	category: string,

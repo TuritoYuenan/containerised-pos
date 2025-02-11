@@ -2,9 +2,9 @@ import { Plus } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
 import { TableHeader, TableRow, TableHead, TableBody, TableCell, Table } from "@/components/ui/table"
 
+import Dropdown from "@/components/Dropdown"
 import SearchBar from "@/components/SearchBar"
 import { InventoryItem } from "@/lib/types"
 
@@ -12,17 +12,7 @@ function ActionBar() {
 	return <div className="flex justify-between">
 		<div className="flex gap-2">
 			<SearchBar subject="inventory" />
-			<Select defaultValue="all">
-				<SelectTrigger className="w-[180px]">
-					<SelectValue placeholder="Category" />
-				</SelectTrigger>
-				<SelectContent className="bg-white">
-					<SelectItem value="all">All Categories</SelectItem>
-					<SelectItem value="food">Food</SelectItem>
-					<SelectItem value="beverages">Beverages</SelectItem>
-					<SelectItem value="supplies">Supplies</SelectItem>
-				</SelectContent>
-			</Select>
+			<Dropdown label="Category" items={["All Categories", "Food", "Beverages", "Supplies"]} default={0} />
 		</div>
 		<Button className="rounded bg-black text-white hover:text-black">
 			<Plus className="mr-2 h-4 w-4" />

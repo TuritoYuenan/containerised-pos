@@ -1,32 +1,12 @@
+import Dropdown from "@/components/Dropdown";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 function ActionBar() {
 	return <div className="flex justify-between">
 		<div className="flex gap-2">
-			<Select defaultValue="week">
-				<SelectTrigger className="w-[180px]">
-					<SelectValue placeholder="Time Period" />
-				</SelectTrigger>
-				<SelectContent className="bg-white">
-					<SelectItem value="day">Today</SelectItem>
-					<SelectItem value="week">This Week</SelectItem>
-					<SelectItem value="month">This Month</SelectItem>
-					<SelectItem value="year">This Year</SelectItem>
-				</SelectContent>
-			</Select>
-			<Select defaultValue="all">
-				<SelectTrigger className="w-[180px]">
-					<SelectValue placeholder="Category" />
-				</SelectTrigger>
-				<SelectContent className="bg-white">
-					<SelectItem value="all">All Categories</SelectItem>
-					<SelectItem value="food">Food</SelectItem>
-					<SelectItem value="beverages">Beverages</SelectItem>
-					<SelectItem value="desserts">Desserts</SelectItem>
-				</SelectContent>
-			</Select>
+			<Dropdown label="Time Period" items={["Today", "This Week", "This Month", "This Year"]} default={1} />
+			<Dropdown label="Category" items={["All Categories", "Food", "Beverages", "Desserts"]} default={0} />
 		</div>
 		<Button className="rounded bg-black text-white hover:text-black">Export Report</Button>
 	</div>
