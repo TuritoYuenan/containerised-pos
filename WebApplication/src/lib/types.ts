@@ -1,3 +1,24 @@
+export type DropdownOptions = {
+	label: string;
+	value: string;
+};
+
+export type InventoryItem = {
+	name: string,
+	category: string,
+	stock: string,
+	price: string,
+	status: string
+}
+
+export type Employee = {
+	name: string,
+	role: string,
+	performance: string,
+	hours: string,
+	status: string
+}
+
 export type SidebarItem = {
 	icon: any;
 	label: string;
